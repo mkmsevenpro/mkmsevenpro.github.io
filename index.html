@@ -59,34 +59,23 @@
     </style>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <div class="feedback-container">
-        <h1>IT Helpdesk MKM SevenPro</h1>
-        <p>Bitte nutzen Sie zur Erstellung eines Tickets dieses Kontaktformular.</p>
-        
-        <!-- Der originale Feedback-Button -->
-        <button id="zammad-feedback-form">Kontaktformular</button>
-    </div>
+   <div id="zammad-feedback-form">form will be placed in here</div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script id="zammad_form_script" src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js"></script>
 
-    <!-- Zammad Form Script -->
-    <script id="zammad_form_script" src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js"></script>
-
-    <!-- Zammad Initialisierung -->
-    <script>
-    $(function() {
-      $('#zammad-feedback-form').ZammadForm({
-        messageTitle: 'Kontaktformular',
-        messageSubmit: 'Übermitteln',
-        messageThankYou: 'Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.',
-        showTitle: true,
-        modal: true,
-        attachmentSupport: true
-      });
-    });
-    </script>
+<script>
+$(function() {
+  $('#zammad-feedback-form').ZammadForm({
+    messageTitle: 'Kontaktformular',
+    messageSubmit: 'Übermitteln',
+    messageThankYou: 'Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.',
+    showTitle: true,
+    attachmentSupport: true
+  });
+});
+</script>
 
 </body>
 </html>
