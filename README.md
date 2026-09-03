@@ -1,17 +1,1 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<button id="zammad-feedback-form">Feedback</button>
 
-<script id="zammad_form_script" src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js"></script>
-
-<script>
-$(function() {
-  $('#zammad-feedback-form').ZammadForm({
-    messageTitle: 'Kontaktformular',
-    messageSubmit: 'Übermitteln',
-    messageThankYou: 'Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.',
-    showTitle: true,
-    modal: true,
-    attachmentSupport: true
-  });
-});
-</script>
