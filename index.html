@@ -2,7 +2,14 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+    <meta
+        name="description"
+        content="MKM SevenPro IT-Support – Support-Anfrage erstellen und technische Unterstützung erhalten."
+    >
 <title>MKM SevenPro · IT Support</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,25 +19,28 @@
 >
 <style>
     :root {
-        --bg: #f7f8fa;
-        --surface: rgba(255, 255, 255, 0.96);
+        --bg: #f5f6f8;
+        --surface: rgba(255, 255, 255, 0.94);
+        --surface-solid: #ffffff;
         --text: #111318;
-        --text-secondary: #4f5866;
-        --text-tertiary: #626b78;
-        --border: #d9dde4;
-        --border-hover: #aeb5c0;
+        --text-secondary: #59616e;
+        --text-tertiary: #7a828e;
+        --border: #dfe3e8;
+        --border-strong: #cbd1d9;
+        --accent: #e9df8d;
+        --accent-soft: #f7f3d7;
+        --success: #178052;
         --focus: #155eef;
-        --yellow: #e9df8d;
-        --yellow-soft: #f6f2cf;
-        --success: #16794f;
-        --radius-xl: 24px;
-        --radius-lg: 16px;
+        --radius-xl: 26px;
+        --radius-lg: 18px;
         --radius-md: 12px;
-        --content-max: 760px;
-        --page-gutter: clamp(16px, 4vw, 32px);
+        --content-max: 780px;
+        --gutter: clamp(16px, 4vw, 30px);
         --shadow:
-            0 24px 70px rgba(15, 23, 42, 0.08),
-            0 4px 12px rgba(15, 23, 42, 0.04);
+            0 30px 80px rgba(15, 23, 42, 0.075),
+            0 8px 24px rgba(15, 23, 42, 0.045);
+        --transition:
+            180ms cubic-bezier(.22,.61,.36,1);
     }
     *,
     *::before,
@@ -39,25 +49,36 @@
     }
     html {
         min-height: 100%;
-        overflow-x: hidden;
         background: var(--bg);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
     }
     body {
         min-width: 280px;
         min-height: 100vh;
         min-height: 100svh;
         margin: 0;
-        overflow-x: hidden;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont,
-            "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            Helvetica,
+            Arial,
+            sans-serif;
         color: var(--text);
         background:
             radial-gradient(
-                circle at 50% -20%,
-                rgba(233, 223, 141, 0.18),
-                transparent 35%
+                700px 380px at 50% -100px,
+                rgba(233, 223, 141, 0.22),
+                transparent 70%
             ),
-            linear-gradient(180deg, #ffffff 0%, var(--bg) 65%);
+            linear-gradient(
+                180deg,
+                #ffffff 0%,
+                var(--bg) 70%
+            );
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
     }
@@ -71,28 +92,38 @@
     svg {
         max-width: 100%;
     }
+    ::selection {
+        background: rgba(233, 223, 141, 0.65);
+        color: #111318;
+    }
     :focus-visible {
         outline: 3px solid var(--focus);
         outline-offset: 3px;
     }
+    /* --------------------------------
+       Accessibility
+    -------------------------------- */
     .skip-link {
         position: fixed;
+        z-index: 9999;
         top: 12px;
         left: 12px;
-        z-index: 1000;
         padding: 10px 14px;
-        border-radius: 8px;
+        border-radius: 9px;
         background: #111318;
-        color: #ffffff;
-        font-size: 14px;
+        color: #fff;
+        font-size: 13px;
         font-weight: 700;
         text-decoration: none;
         transform: translateY(-180%);
-        transition: transform 0.18s ease;
+        transition: transform var(--transition);
     }
     .skip-link:focus {
         transform: translateY(0);
     }
+    /* --------------------------------
+       Layout
+    -------------------------------- */
     .page {
         width: min(100%, var(--content-max));
         min-height: 100vh;
@@ -100,16 +131,18 @@
         margin: 0 auto;
         padding:
             max(28px, env(safe-area-inset-top))
-            max(var(--page-gutter), env(safe-area-inset-right))
-            max(32px, env(safe-area-inset-bottom))
-            max(var(--page-gutter), env(safe-area-inset-left));
+            max(var(--gutter), env(safe-area-inset-right))
+            max(36px, env(safe-area-inset-bottom))
+            max(var(--gutter), env(safe-area-inset-left));
     }
+    /* --------------------------------
+       Header
+    -------------------------------- */
     .topbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        margin-bottom: clamp(42px, 9vw, 76px);
+        margin-bottom: clamp(46px, 8vw, 72px);
     }
     .brand {
         display: flex;
@@ -118,191 +151,172 @@
         min-width: 0;
     }
     .brand-mark {
-        width: 34px;
-        height: 34px;
-        flex: 0 0 34px;
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
         display: grid;
         place-items: center;
-        border-radius: 10px;
+        border-radius: 11px;
         background: #111318;
-        color: var(--yellow);
-        font-size: 14px;
+        color: var(--accent);
+        font-size: 13px;
         font-weight: 800;
-        letter-spacing: -0.04em;
-        box-shadow: 0 4px 10px rgba(17, 19, 24, 0.14);
+        letter-spacing: -0.05em;
+        box-shadow:
+            0 5px 14px rgba(17, 19, 24, 0.14);
     }
     .brand-name {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-size: 14px;
-        font-weight: 600;
-        letter-spacing: -0.01em;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
     }
     .brand-name span {
         color: var(--text-tertiary);
         font-weight: 400;
     }
-    .status {
-        display: flex;
+    .availability {
+        display: inline-flex;
         align-items: center;
         gap: 8px;
-        flex: 0 0 auto;
         color: var(--text-secondary);
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 500;
-        white-space: nowrap;
     }
-    .status-dot {
+    .availability-dot {
         width: 7px;
         height: 7px;
         flex: 0 0 7px;
         border-radius: 50%;
         background: var(--success);
-        box-shadow: 0 0 0 3px rgba(22, 121, 79, 0.12);
+        box-shadow:
+            0 0 0 4px rgba(23, 128, 82, 0.10);
     }
+    /* --------------------------------
+       Hero
+    -------------------------------- */
     .hero {
-        margin: 0 auto clamp(28px, 6vw, 44px);
+        margin: 0 auto clamp(30px, 6vw, 44px);
         text-align: center;
     }
     .eyebrow {
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        max-width: 100%;
+        gap: 8px;
+        margin-bottom: 18px;
         padding: 6px 10px;
         border: 1px solid var(--border);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255,255,255,.78);
         color: var(--text-secondary);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        white-space: nowrap;
-        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
-        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .08em;
     }
     .eyebrow-icon {
         width: 15px;
         height: 15px;
-        flex: 0 0 15px;
         display: grid;
         place-items: center;
         border-radius: 5px;
-        background: var(--yellow-soft);
-        color: #5f581f;
+        background: var(--accent-soft);
+        color: #5d5724;
     }
     .eyebrow-icon svg {
         width: 10px;
         height: 10px;
     }
     .hero h1 {
-        max-width: 100%;
-        margin: 0;
-        font-size: clamp(34px, 7vw, 58px);
-        line-height: 1.04;
-        letter-spacing: -0.065em;
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: clamp(38px, 7vw, 62px);
+        line-height: 1.02;
+        letter-spacing: -0.07em;
         font-weight: 700;
-        overflow-wrap: break-word;
     }
     .hero h1 span {
-        color: #5f6672;
+        color: #646c78;
     }
     .hero p {
-        width: min(100%, 510px);
-        margin: clamp(13px, 2.5vw, 18px) auto 0;
-        padding: 0 4px;
+        max-width: 500px;
+        margin: 17px auto 0;
         color: var(--text-secondary);
-        font-size: clamp(14px, 2vw, 15px);
-        line-height: 1.6;
+        font-size: 14px;
+        line-height: 1.65;
         letter-spacing: -0.01em;
     }
+    /* --------------------------------
+       Card
+    -------------------------------- */
     .card {
         position: relative;
         width: 100%;
         min-width: 0;
-        padding: clamp(20px, 4.5vw, 34px);
+        padding: clamp(20px, 4.5vw, 38px);
+        border: 1px solid rgba(205, 210, 218, .9);
+        border-radius: var(--radius-xl);
         background: var(--surface);
-        border: 1px solid rgba(205, 210, 218, 0.95);
-        border-radius: clamp(18px, 3vw, var(--radius-xl));
         box-shadow: var(--shadow);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        animation: appear 0.55s cubic-bezier(.22,.61,.36,1);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        animation:
+            card-in .55s cubic-bezier(.22,.61,.36,1) both;
     }
     .card::before {
         content: "";
         position: absolute;
         top: 0;
-        left: clamp(18px, 4.5vw, 32px);
-        right: clamp(18px, 4.5vw, 32px);
+        left: 32px;
+        right: 32px;
         height: 1px;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(233, 223, 141, 0.9),
-            transparent
-        );
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                rgba(233,223,141,.9),
+                transparent
+            );
     }
     .card-header {
         display: flex;
         align-items: flex-start;
-        justify-content: space-between;
-        gap: 16px;
-        padding-bottom: clamp(20px, 4vw, 28px);
-        margin-bottom: clamp(20px, 4vw, 28px);
+        gap: 14px;
+        padding-bottom: 24px;
+        margin-bottom: 26px;
         border-bottom: 1px solid var(--border);
     }
-    .card-title {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-    }
-    .icon {
-        width: 42px;
-        height: 42px;
-        flex: 0 0 42px;
+    .card-icon {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
         display: grid;
         place-items: center;
-        border-radius: 12px;
+        border-radius: 13px;
         background: #111318;
-        color: var(--yellow);
-        box-shadow: 0 5px 14px rgba(17, 19, 24, 0.13);
+        color: var(--accent);
+        box-shadow:
+            0 6px 16px rgba(17, 19, 24, .13);
     }
-    .icon svg {
+    .card-icon svg {
         width: 20px;
         height: 20px;
     }
-    .card-title > div:last-child {
-        min-width: 0;
-    }
     .card-title h2 {
-        margin: 0 0 4px;
+        margin: 1px 0 4px;
         font-size: 16px;
         line-height: 1.25;
         font-weight: 650;
-        letter-spacing: -0.025em;
+        letter-spacing: -.025em;
     }
     .card-title p {
         margin: 0;
         color: var(--text-secondary);
         font-size: 12px;
-        line-height: 1.45;
+        line-height: 1.5;
     }
-    .ticket-label {
-        flex: 0 0 auto;
-        white-space: nowrap;
-        padding: 6px 9px;
-        border-radius: 7px;
-        background: #eef0f3;
-        color: #4f5866;
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-    }
+    /* --------------------------------
+       Zammad
+    -------------------------------- */
     #zammad-feedback-form {
         width: 100%;
         min-width: 0;
@@ -323,15 +337,12 @@
     }
     #zammad-feedback-form label {
         display: block !important;
-        max-width: 100% !important;
         margin: 0 0 7px !important;
         color: #343b47 !important;
         font-family: inherit !important;
         font-size: 12px !important;
         font-weight: 600 !important;
         line-height: 1.35 !important;
-        letter-spacing: -0.005em;
-        overflow-wrap: anywhere;
     }
     #zammad-feedback-form input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
     #zammad-feedback-form textarea,
@@ -340,36 +351,59 @@
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
-        min-height: 46px !important;
+        min-height: 48px !important;
         padding: 12px 13px !important;
         border: 1px solid var(--border) !important;
         border-radius: var(--radius-md) !important;
-        background: #ffffff !important;
+        background: #fff !important;
         color: var(--text) !important;
         font-family: inherit !important;
         font-size: 16px !important;
-        line-height: 1.35 !important;
+        line-height: 1.4 !important;
         outline: none !important;
-        appearance: none;
-        -webkit-appearance: none;
-        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.02) !important;
+        box-shadow:
+            0 1px 2px rgba(16,24,40,.025) !important;
         transition:
-            border-color .18s ease,
-            box-shadow .18s ease,
-            background .18s ease !important;
+            border-color var(--transition),
+            box-shadow var(--transition),
+            background var(--transition) !important;
     }
+    #zammad-feedback-form input:hover,
+    #zammad-feedback-form textarea:hover,
+    #zammad-feedback-form select:hover {
+        border-color: var(--border-strong) !important;
+    }
+    #zammad-feedback-form input:focus,
+    #zammad-feedback-form textarea:focus,
+    #zammad-feedback-form select:focus {
+        border-color: var(--focus) !important;
+        box-shadow:
+            0 0 0 3px rgba(21,94,239,.15),
+            0 2px 4px rgba(16,24,40,.03) !important;
+    }
+    #zammad-feedback-form input::placeholder,
+    #zammad-feedback-form textarea::placeholder {
+        color: #747d89 !important;
+        opacity: 1;
+    }
+    #zammad-feedback-form textarea {
+        min-height: 155px !important;
+        resize: vertical !important;
+        line-height: 1.55 !important;
+    }
+    /* Upload */
     #zammad-feedback-form input[type="file"] {
         display: block !important;
         width: 100% !important;
-        max-width: 100% !important;
-        min-height: 46px !important;
+        min-height: 48px !important;
         padding: 10px !important;
-        border: 1px dashed var(--border-hover) !important;
+        border: 1px dashed var(--border-strong) !important;
         border-radius: var(--radius-md) !important;
         background: #fafbfc !important;
         color: var(--text-secondary) !important;
         font-size: 13px !important;
     }
+    /* Checkboxes */
     #zammad-feedback-form input[type="checkbox"],
     #zammad-feedback-form input[type="radio"] {
         width: 18px !important;
@@ -377,81 +411,52 @@
         min-height: 18px !important;
         accent-color: #111318;
     }
-    #zammad-feedback-form input::placeholder,
-    #zammad-feedback-form textarea::placeholder {
-        color: #68717e !important;
-        opacity: 1;
-    }
-    #zammad-feedback-form input:hover,
-    #zammad-feedback-form textarea:hover,
-    #zammad-feedback-form select:hover {
-        border-color: var(--border-hover) !important;
-    }
-    #zammad-feedback-form input:focus,
-    #zammad-feedback-form textarea:focus,
-    #zammad-feedback-form select:focus {
-        border-color: var(--focus) !important;
-        background: #fff !important;
-        box-shadow:
-            0 0 0 3px rgba(21, 94, 239, 0.18),
-            0 1px 2px rgba(16, 24, 40, 0.03) !important;
-    }
-    #zammad-feedback-form textarea {
-        min-height: 150px !important;
-        resize: vertical !important;
-        line-height: 1.55 !important;
-    }
+    /* Submit */
     #zammad-feedback-form button,
     #zammad-feedback-form input[type="submit"],
     #zammad-feedback-form input[type="button"] {
         display: block !important;
         width: 100% !important;
-        min-height: 48px !important;
-        margin-top: 8px !important;
-        padding: 13px 18px !important;
+        min-height: 50px !important;
+        margin-top: 10px !important;
+        padding: 14px 18px !important;
         border: 0 !important;
-        border-radius: 11px !important;
+        border-radius: 12px !important;
         background: #111318 !important;
-        color: #ffffff !important;
+        color: #fff !important;
         font-family: inherit !important;
         font-size: 14px !important;
         font-weight: 650 !important;
-        line-height: 1.2 !important;
         cursor: pointer !important;
         touch-action: manipulation;
-        box-shadow: 0 4px 10px rgba(17, 19, 24, 0.10) !important;
+        box-shadow:
+            0 5px 14px rgba(17,19,24,.11) !important;
         transition:
-            transform .15s ease,
-            background .18s ease,
-            box-shadow .18s ease !important;
+            transform var(--transition),
+            background var(--transition),
+            box-shadow var(--transition) !important;
     }
     #zammad-feedback-form button:hover,
     #zammad-feedback-form input[type="submit"]:hover,
     #zammad-feedback-form input[type="button"]:hover {
         background: #292d35 !important;
         transform: translateY(-1px);
-        box-shadow: 0 8px 18px rgba(17, 19, 24, 0.14) !important;
-    }
-    #zammad-feedback-form button:focus-visible,
-    #zammad-feedback-form input[type="submit"]:focus-visible,
-    #zammad-feedback-form input[type="button"]:focus-visible {
-        outline: 3px solid var(--focus) !important;
-        outline-offset: 3px;
+        box-shadow:
+            0 9px 20px rgba(17,19,24,.15) !important;
     }
     #zammad-feedback-form button:active,
     #zammad-feedback-form input[type="submit"]:active,
     #zammad-feedback-form input[type="button"]:active {
         transform: translateY(0);
     }
+    /* Links */
     #zammad-feedback-form a {
         color: #155eef;
         overflow-wrap: anywhere;
     }
-    #zammad-feedback-form a:focus-visible {
-        outline: 3px solid var(--focus);
-        outline-offset: 3px;
-        border-radius: 4px;
-    }
+    /* --------------------------------
+       Trust row
+    -------------------------------- */
     .reassurance {
         display: flex;
         justify-content: center;
@@ -459,7 +464,6 @@
         flex-wrap: wrap;
         gap: 18px;
         margin-top: 22px;
-        padding: 0 8px;
         color: var(--text-secondary);
         font-size: 11px;
         text-align: center;
@@ -469,75 +473,73 @@
         align-items: center;
         gap: 6px;
     }
-    .reassurance svg {
+    .reassurance-item svg {
         width: 13px;
         height: 13px;
-        flex: 0 0 13px;
     }
     .separator {
         width: 3px;
         height: 3px;
-        flex: 0 0 3px;
         border-radius: 50%;
-        background: #8b93a1;
+        background: #9aa1ac;
     }
+    /* --------------------------------
+       Footer
+    -------------------------------- */
     .footer {
-        margin-top: 30px;
-        text-align: center;
-        color: #626b78;
+        margin-top: 28px;
+        color: #737b87;
         font-size: 10px;
-        letter-spacing: 0.01em;
+        line-height: 1.5;
+        text-align: center;
     }
     .footer strong {
-        color: #4f5866;
+        color: #505864;
         font-weight: 600;
     }
-    @keyframes appear {
+    /* --------------------------------
+       Animation
+    -------------------------------- */
+    @keyframes card-in {
         from {
             opacity: 0;
-            transform: translateY(12px) scale(.985);
+            transform:
+                translateY(14px)
+                scale(.985);
         }
         to {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform:
+                translateY(0)
+                scale(1);
         }
     }
+    /* --------------------------------
+       Tablet
+    -------------------------------- */
     @media (min-width: 768px) {
         .page {
             padding-top: clamp(48px, 8vh, 88px);
             padding-bottom: clamp(48px, 8vh, 88px);
         }
-        .topbar {
-            margin-bottom: clamp(56px, 9vh, 84px);
-        }
         .card {
-            padding-left: clamp(30px, 5vw, 42px);
-            padding-right: clamp(30px, 5vw, 42px);
+            padding-left: 40px;
+            padding-right: 40px;
         }
     }
-    @media (min-width: 1100px) {
-        .page {
-            width: min(100%, 820px);
-        }
-        .hero h1 {
-            font-size: clamp(54px, 5vw, 68px);
-        }
-        .card {
-            padding: 40px;
-        }
-    }
+    /* --------------------------------
+       Mobile
+    -------------------------------- */
     @media (max-width: 600px) {
-        .status {
+        .availability {
             display: none;
         }
         .hero h1 {
-            font-size: clamp(34px, 11vw, 46px);
+            font-size: clamp(35px, 11vw, 47px);
         }
         .hero p {
             max-width: 380px;
-        }
-        .ticket-label {
-            display: none;
+            font-size: 13px;
         }
         .reassurance {
             flex-direction: column;
@@ -549,7 +551,8 @@
     }
     @media (max-width: 420px) {
         .page {
-            padding-top: max(22px, env(safe-area-inset-top));
+            padding-top:
+                max(22px, env(safe-area-inset-top));
         }
         .topbar {
             margin-bottom: 38px;
@@ -560,13 +563,9 @@
         .hero {
             margin-bottom: 24px;
         }
-        .eyebrow {
-            margin-bottom: 15px;
-            font-size: 10px;
-        }
         .hero h1 {
             font-size: clamp(32px, 11vw, 40px);
-            letter-spacing: -0.06em;
+            letter-spacing: -.06em;
         }
         .hero p {
             margin-top: 13px;
@@ -575,6 +574,7 @@
         }
         .card {
             padding: 18px 15px;
+            border-radius: 20px;
         }
         .card::before {
             left: 18px;
@@ -585,16 +585,13 @@
             padding-bottom: 18px;
             margin-bottom: 18px;
         }
-        .card-title {
-            gap: 10px;
-        }
-        .icon {
+        .card-icon {
             width: 38px;
             height: 38px;
             flex-basis: 38px;
             border-radius: 11px;
         }
-        .icon svg {
+        .card-icon svg {
             width: 18px;
             height: 18px;
         }
@@ -611,20 +608,19 @@
         #zammad-feedback-form input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
         #zammad-feedback-form textarea,
         #zammad-feedback-form select {
-            min-height: 44px !important;
+            min-height: 45px !important;
             padding: 11px 12px !important;
             font-size: 16px !important;
             border-radius: 10px !important;
         }
         #zammad-feedback-form textarea {
-            min-height: 130px !important;
+            min-height: 135px !important;
         }
         #zammad-feedback-form button,
         #zammad-feedback-form input[type="submit"],
         #zammad-feedback-form input[type="button"] {
-            min-height: 46px !important;
-            padding: 12px 15px !important;
-            font-size: 13px !important;
+            min-height: 48px !important;
+            padding: 13px 15px !important;
         }
         .footer {
             margin-top: 24px;
@@ -635,7 +631,6 @@
             width: 31px;
             height: 31px;
             flex-basis: 31px;
-            font-size: 12px;
         }
         .brand-name {
             font-size: 12px;
@@ -648,204 +643,376 @@
             padding-left: 13px;
         }
     }
+    /* --------------------------------
+       Touch devices
+    -------------------------------- */
     @media (hover: none) {
         #zammad-feedback-form button:hover,
         #zammad-feedback-form input[type="submit"]:hover,
         #zammad-feedback-form input[type="button"]:hover {
             transform: none;
-            box-shadow: 0 4px 10px rgba(17, 19, 24, 0.10) !important;
+            box-shadow:
+                0 5px 14px rgba(17,19,24,.11) !important;
         }
     }
+    /* --------------------------------
+       Reduced motion
+    -------------------------------- */
     @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
         *,
         *::before,
         *::after {
-            animation-duration: 0.01ms !important;
+            animation-duration: .01ms !important;
             animation-iteration-count: 1 !important;
-            scroll-behavior: auto !important;
-            transition-duration: 0.01ms !important;
+            transition-duration: .01ms !important;
+        }
+    }
+    /* --------------------------------
+       Dark mode
+    -------------------------------- */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #0d0f12;
+            --surface: rgba(24, 27, 32, .94);
+            --surface-solid: #181b20;
+            --text: #f4f5f7;
+            --text-secondary: #a9b0ba;
+            --text-tertiary: #858d99;
+            --border: #30353d;
+            --border-strong: #414750;
+            --accent-soft: #373522;
+        }
+        body {
+            background:
+                radial-gradient(
+                    700px 380px at 50% -100px,
+                    rgba(233,223,141,.08),
+                    transparent 70%
+                ),
+                linear-gradient(
+                    180deg,
+                    #111318 0%,
+                    #0d0f12 70%
+                );
+        }
+        .brand-mark,
+        .card-icon {
+            background: #f1f2f4;
+            color: #514d1e;
+        }
+        .eyebrow {
+            background: rgba(30,33,38,.85);
+            border-color: var(--border);
+        }
+        .hero h1 span {
+            color: #9da5b1;
+        }
+        .card {
+            border-color: rgba(65,71,80,.9);
+        }
+        #zammad-feedback-form input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+        #zammad-feedback-form textarea,
+        #zammad-feedback-form select {
+            background: #111419 !important;
+            color: #f4f5f7 !important;
+            border-color: var(--border) !important;
+        }
+        #zammad-feedback-form input[type="file"] {
+            background: #111419 !important;
+            color: var(--text-secondary) !important;
+        }
+        #zammad-feedback-form label {
+            color: #d9dde3 !important;
+        }
+        #zammad-feedback-form input::placeholder,
+        #zammad-feedback-form textarea::placeholder {
+            color: #858d99 !important;
+        }
+        #zammad-feedback-form button,
+        #zammad-feedback-form input[type="submit"],
+        #zammad-feedback-form input[type="button"] {
+            background: #f1f2f4 !important;
+            color: #111318 !important;
+        }
+        #zammad-feedback-form button:hover,
+        #zammad-feedback-form input[type="submit"]:hover,
+        #zammad-feedback-form input[type="button"]:hover {
+            background: #ffffff !important;
         }
     }
 </style>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">
-        Zum Hauptinhalt springen
-    </a>
+<a class="skip-link" href="#main-content">
+    Zum Hauptinhalt springen
+</a>
 <main id="main-content" class="page">
-    <header class="topbar" aria-label="Kopfbereich">
-        <div class="brand" aria-label="MKM SevenPro">
-            <div class="brand-mark" aria-hidden="true">
-                IT
-            </div>
-            <div class="brand-name">
-                MKM SevenPro
-            </div>
+<header class="topbar" aria-label="Kopfbereich">
+    <div class="brand" aria-label="MKM SevenPro">
+        <div class="brand-mark" aria-hidden="true">
+            IT
         </div>
-    </header>
-    <section class="hero" aria-labelledby="page-title">
-        <div class="eyebrow">
-            <span class="eyebrow-icon" aria-hidden="true">
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <path d="M12 3v18"/>
-                    <path d="M3 12h18"/>
-                </svg>
-            </span>
-            <span>HELPDESK</span>
+        <div class="brand-name">
+            MKM SevenPro
         </div>
-        <h1 id="page-title">
-            Wie können wir
-            <span>helfen?</span>
-        </h1>
-        <p id="page-description">
-            Erstellen Sie ein Support-Ticket und teilen Sie uns
-            mit, wobei Sie Unterstützung benötigen.
-        </p>
-    </section>
-    <section
-        class="card"
-        aria-labelledby="ticket-title"
-        aria-describedby="ticket-description"
-    >
-        <div class="card-header">
-            <div class="card-title">
-                <div class="icon" aria-hidden="true">
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                        focusable="false"
-                    >
-                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8
-                                 8.5 8.5 0 0 1-7.6 4.7
-                                 8.38 8.38 0 0 1-3.8-.9
-                                 L3 21l1.9-5.7
-                                 A8.38 8.38 0 0 1 4 11.5
-                                 8.5 8.5 0 0 1 8.7 3.9
-                                 8.38 8.38 0 0 1 12.5 3
-                                 h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                        <path d="M8 10h8"/>
-                        <path d="M8 14h5"/>
-                    </svg>
-                </div>
-                <div>
-                    <h2 id="ticket-title">Neues Support-Ticket</h2>
-                    <p id="ticket-description">
-                        Beschreiben Sie Ihr Anliegen so genau wie möglich. Screenshots von Fehlermeldungen sind nützlich.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div
-            id="zammad-feedback-form"
-            role="region"
-            aria-label="Formular für ein neues Support-Ticket"
-            aria-live="polite"
+    </div>
+    <div class="availability" aria-label="Support verfügbar">
+        <span
+            class="availability-dot"
+            aria-hidden="true"
+        ></span>
+        Support erreichbar
+    </div>
+</header>
+<section
+    class="hero"
+    aria-labelledby="page-title"
+>
+    <div class="eyebrow">
+        <span
+            class="eyebrow-icon"
+            aria-hidden="true"
         >
-            Formular wird geladen...
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M12 3v18"/>
+                <path d="M3 12h18"/>
+            </svg>
+        </span>
+        <span>IT-HELPDESK</span>
+    </div>
+    <h1 id="page-title">
+        Wie können wir
+        <span>helfen?</span>
+    </h1>
+    <p>
+        Erstellen Sie eine Support-Anfrage und beschreiben Sie
+        kurz, wobei Sie Unterstützung benötigen.
+    </p>
+</section>
+<section
+    class="card"
+    aria-labelledby="ticket-title"
+>
+    <div class="card-header">
+        <div class="card-icon" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8
+                         8.5 8.5 0 0 1-7.6 4.7
+                         8.38 8.38 0 0 1-3.8-.9
+                         L3 21l1.9-5.7
+                         A8.38 8.38 0 0 1 4 11.5
+                         8.5 8.5 0 0 1 8.7 3.9
+                         8.38 8.38 0 0 1 12.5 3
+                         h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                <path d="M8 10h8"/>
+                <path d="M8 14h5"/>
+            </svg>
         </div>
-    </section>
-
-    <footer class="footer">
-        <strong>MKM SevenPro</strong>
-        <span aria-hidden="true"> · </span>
-        <span>Professioneller IT-Support</span>
-    </footer>
+        <div class="card-title">
+            <h2 id="ticket-title">
+                Neues Support-Ticket
+            </h2>
+            <p>
+                Je genauer die Beschreibung (Screenshot), desto schneller
+                können wir helfen.
+            </p>
+        </div>
+    </div>
+    <div
+        id="zammad-feedback-form"
+        role="region"
+        aria-label="Formular für ein neues Support-Ticket"
+        aria-live="polite"
+    >
+        <p style="
+            margin:0;
+            color:#69727e;
+            font-size:13px;
+            text-align:center;
+            padding:20px 0;
+        ">
+            Formular wird geladen …
+        </p>
+    </div>
+</section>
+<div
+    class="reassurance"
+    aria-label="Support-Hinweise"
+>
+    <div class="reassurance-item">
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+        </svg>
+        Sichere Übermittlung
+    </div>
+    <span
+        class="separator"
+        aria-hidden="true"
+    ></span>
+    <div class="reassurance-item">
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+        </svg>
+        Persönliche Bearbeitung
+    </div>
+ 
+</div>
+<footer class="footer">
+    <strong>MKM SevenPro</strong>
+    <span aria-hidden="true"> · </span>
+    Professioneller IT-Support
+</footer>
 </main>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+></script>
 <script
     id="zammad_form_script"
-    src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js">
-</script>
+    src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js"
+></script>
 <script>
-    $(function () {
-        $('#zammad-feedback-form').ZammadForm({
-            messageTitle: 'Kontaktformular',
-            messageSubmit: 'Ticket übermitteln',
-            messageThankYou:
-                'Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.',
-            showTitle: false,
-            attachmentSupport: true
-        });
-        const formContainer = document.getElementById('zammad-feedback-form');
-        if (!formContainer) {
-            return;
+(function () {
+    function initZammad() {
+        if (
+            typeof window.jQuery === "undefined" ||
+            typeof jQuery.fn.ZammadForm !== "function"
+        ) {
+            return false;
         }
-        const enhanceZammadForm = () => {
-            const form = formContainer.querySelector('form');
-            if (form) {
-                form.setAttribute(
-                    'aria-label',
-                    'Formular für ein neues Support-Ticket'
-                );
-                form.setAttribute('novalidate', 'false');
-            }
-            const fields = formContainer.querySelectorAll(
-                'input, textarea, select'
-            );
-            fields.forEach((field, index) => {
-                if (
-                    field.type === 'submit' ||
-                    field.type === 'button' ||
-                    field.type === 'hidden'
-                ) {
-                    return;
-                }
-                if (!field.id) {
-                    field.id = `zammad-field-${index + 1}`;
-                }
-                const label = formContainer.querySelector(
-                    `label[for="${CSS.escape(field.id)}"]`
-                );
-                if (!label) {
-                    const parentLabel = field.closest('label');
-                    if (!parentLabel && !field.getAttribute('aria-label')) {
-                        const fieldName =
-                            field.getAttribute('name') ||
-                            field.getAttribute('placeholder') ||
-                            'Support-Feld';
-                        field.setAttribute('aria-label', fieldName);
-                    }
-                }
-                if (
-                    field.required ||
-                    field.getAttribute('aria-required') === 'true'
-                ) {
-                    field.setAttribute('aria-required', 'true');
-                }
-            });
-            const submitControls = formContainer.querySelectorAll(
-                'button, input[type="submit"], input[type="button"]'
-            );
-            submitControls.forEach((control) => {
-                if (!control.getAttribute('aria-label') && !control.textContent.trim()) {
-                    control.setAttribute(
-                        'aria-label',
-                        'Support-Ticket übermitteln'
-                    );
-                }
-            });
-        };
-        enhanceZammadForm();
-        const observer = new MutationObserver(enhanceZammadForm);
-        observer.observe(formContainer, {
+        const container =
+            document.getElementById("zammad-feedback-form");
+        if (!container) {
+            return false;
+        }
+        jQuery(container).ZammadForm({
+            messageTitle:
+                "Kontaktformular",
+            messageSubmit:
+                "Ticket übermitteln",
+            messageThankYou:
+                "Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.",
+            showTitle:
+                false,
+            attachmentSupport:
+                true
+        });
+        enhanceForm();
+        const observer =
+            new MutationObserver(enhanceForm);
+        observer.observe(container, {
             childList: true,
             subtree: true
         });
-    });
+        return true;
+    }
+    function enhanceForm() {
+        const container =
+            document.getElementById("zammad-feedback-form");
+        if (!container) {
+            return;
+        }
+        const form =
+            container.querySelector("form");
+        if (form) {
+            form.setAttribute(
+                "aria-label",
+                "Formular für ein neues Support-Ticket"
+            );
+        }
+        const fields =
+            container.querySelectorAll(
+                "input, textarea, select"
+            );
+        fields.forEach(function (field, index) {
+            if (
+                field.type === "submit" ||
+                field.type === "button" ||
+                field.type === "hidden"
+            ) {
+                return;
+            }
+            if (!field.id) {
+                field.id =
+                    "zammad-field-" +
+                    (index + 1);
+            }
+            if (
+                field.required ||
+                field.getAttribute(
+                    "aria-required"
+                ) === "true"
+            ) {
+                field.setAttribute(
+                    "aria-required",
+                    "true"
+                );
+            }
+        });
+        const buttons =
+            container.querySelectorAll(
+                "button, input[type='submit'], input[type='button']"
+            );
+        buttons.forEach(function (button) {
+            const text =
+                (
+                    button.textContent ||
+                    button.value ||
+                    ""
+                ).trim();
+            if (!text) {
+                button.setAttribute(
+                    "aria-label",
+                    "Support-Ticket übermitteln"
+                );
+            }
+        });
+    }
+    let attempts = 0;
+    const interval =
+        setInterval(function () {
+            attempts++;
+            if (initZammad() || attempts > 30) {
+                clearInterval(interval);
+            }
+        }, 250);
+})();
 </script>
 </body>
 </html>
