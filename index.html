@@ -3,37 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="MKM SevenPro IT-Support – Support-Anfrage erstellen und technische Unterstützung erhalten.">
+
+    <meta
+        name="description"
+        content="MKM SevenPro IT-Support – Support-Anfrage erstellen und schnelle technische Unterstützung erhalten."
+    >
+
+    <meta name="theme-color" content="#f7f8fa">
+
     <title>MKM SevenPro · IT Support</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
         :root {
-            --bg: #f5f6f8;
-            --surface: rgba(255, 255, 255, 0.94);
+            --bg: #f7f8fa;
+            --surface: rgba(255, 255, 255, 0.90);
             --surface-solid: #ffffff;
+
             --text: #111318;
-            --text-secondary: #59616e;
-            --text-tertiary: #7a828e;
-            --border: #dfe3e8;
+            --text-secondary: #626b78;
+            --text-tertiary: #858d99;
+
+            --border: #e1e5ea;
             --border-strong: #cbd1d9;
+
             --accent: #e9df8d;
             --accent-soft: #f7f3d7;
-            --icon-color: #c9a55c;
+            --accent-dark: #5d5724;
+
+            --icon-color: #c7a55e;
+
             --success: #178052;
             --focus: #155eef;
-            --radius-xl: 26px;
-            --radius-lg: 18px;
-            --radius-md: 12px;
+
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 13px;
+
             --content-max: 1100px;
-            --gutter: clamp(16px, 4vw, 30px);
-            --shadow: 0 30px 80px rgba(15, 23, 42, 0.075), 0 8px 24px rgba(15, 23, 42, 0.045);
-            --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-            --transition: 180ms cubic-bezier(.22,.61,.36,1);
+            --form-max: 820px;
+
+            --gutter: clamp(18px, 4vw, 32px);
+
+            --shadow:
+                0 40px 100px rgba(15, 23, 42, 0.075),
+                0 10px 30px rgba(15, 23, 42, 0.045);
+
+            --shadow-card:
+                0 4px 16px rgba(15, 23, 42, 0.035);
+
+            --shadow-card-hover:
+                0 18px 38px rgba(15, 23, 42, 0.075);
+
+            --transition: 180ms cubic-bezier(.22, .61, .36, 1);
         }
 
-        *, *::before, *::after { box-sizing: border-box; }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
         html {
             min-height: 100%;
@@ -47,17 +91,46 @@
             min-height: 100vh;
             min-height: 100svh;
             margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+            font-family:
+                "Inter",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
             color: var(--text);
+
             background:
-                radial-gradient(700px 380px at 50% -100px, rgba(233, 223, 141, 0.22), transparent 70%),
-                linear-gradient(180deg, #ffffff 0%, var(--bg) 70%);
+                radial-gradient(
+                    700px 360px at 50% -130px,
+                    rgba(233, 223, 141, 0.20),
+                    transparent 70%
+                ),
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    var(--bg) 62%
+                );
+
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
         }
 
-        button, input, textarea, select { font: inherit; }
-        img, svg { max-width: 100%; }
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        img,
+        svg {
+            max-width: 100%;
+        }
 
         ::selection {
             background: rgba(233, 223, 141, 0.65);
@@ -69,262 +142,334 @@
             outline-offset: 3px;
         }
 
-        /* Accessibility */
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
         .skip-link {
             position: fixed;
             z-index: 9999;
+
             top: 12px;
             left: 12px;
+
             padding: 10px 14px;
+
             border-radius: 9px;
+
             background: #111318;
-            color: #fff;
+            color: #ffffff;
+
             font-size: 13px;
             font-weight: 700;
+
             text-decoration: none;
+
             transform: translateY(-180%);
             transition: transform var(--transition);
         }
-        .skip-link:focus { transform: translateY(0); }
 
-        /* Layout */
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
         .page {
             width: min(100%, var(--content-max));
             min-height: 100vh;
             min-height: 100svh;
+
             margin: 0 auto;
+
             padding:
                 max(28px, env(safe-area-inset-top))
                 max(var(--gutter), env(safe-area-inset-right))
-                max(36px, env(safe-area-inset-bottom))
+                max(48px, env(safe-area-inset-bottom))
                 max(var(--gutter), env(safe-area-inset-left));
         }
 
-        /* Header */
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
         .topbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: clamp(40px, 7vw, 60px);
+
+            margin-bottom: clamp(52px, 8vw, 78px);
         }
+
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 11px;
+
             min-width: 0;
         }
+
         .brand-mark {
-            width: 36px;
-            height: 36px;
-            flex: 0 0 36px;
+            width: 38px;
+            height: 38px;
+            flex: 0 0 38px;
+
             display: grid;
             place-items: center;
-            border-radius: 11px;
+
+            border-radius: 12px;
+
             background: #111318;
             color: var(--accent);
-            font-size: 13px;
+
+            font-size: 12px;
             font-weight: 800;
             letter-spacing: -0.05em;
-            box-shadow: 0 5px 14px rgba(17, 19, 24, 0.14);
+
+            box-shadow:
+                0 7px 18px rgba(17, 19, 24, 0.15);
         }
+
         .brand-name {
             font-size: 14px;
             font-weight: 650;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.025em;
             white-space: nowrap;
         }
+
         .availability {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
+
             color: var(--text-secondary);
+
             font-size: 11px;
             font-weight: 500;
         }
+
         .availability-dot {
             width: 7px;
             height: 7px;
             flex: 0 0 7px;
+
             border-radius: 50%;
+
             background: var(--success);
-            box-shadow: 0 0 0 4px rgba(23, 128, 82, 0.10);
+
+            box-shadow:
+                0 0 0 4px rgba(23, 128, 82, 0.10);
         }
 
-        /* Hero */
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
         .hero {
-            margin: 0 auto clamp(28px, 5vw, 40px);
+            max-width: 800px;
+
+            margin:
+                0 auto
+                clamp(34px, 5vw, 48px);
+
             text-align: center;
         }
+
         .eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 18px;
-            padding: 6px 10px;
+
+            margin-bottom: 19px;
+            padding: 6px 11px;
+
             border: 1px solid var(--border);
             border-radius: 999px;
-            background: rgba(255,255,255,.78);
+
+            background: rgba(255, 255, 255, 0.78);
+
             color: var(--text-secondary);
+
             font-size: 10px;
             font-weight: 700;
-            letter-spacing: .08em;
+            letter-spacing: .09em;
+
+            box-shadow:
+                0 2px 8px rgba(15, 23, 42, 0.025);
         }
+
         .eyebrow-icon {
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
+
             display: grid;
             place-items: center;
+
             border-radius: 5px;
+
             background: var(--accent-soft);
-            color: #5d5724;
+            color: var(--accent-dark);
         }
-        .eyebrow-icon svg { width: 10px; height: 10px; }
+
+        .eyebrow-icon svg {
+            width: 10px;
+            height: 10px;
+        }
+
         .hero h1 {
-            max-width: 700px;
+            max-width: 760px;
+
             margin: 0 auto;
-            font-size: clamp(36px, 6.5vw, 56px);
-            line-height: 1.05;
-            letter-spacing: -0.06em;
+
+            font-size: clamp(40px, 7vw, 64px);
+            line-height: 1;
+            letter-spacing: -0.068em;
+
             font-weight: 700;
         }
-        .hero h1 span { color: #646c78; }
+
+        .hero h1 span {
+            color: #737b87;
+        }
+
         .hero p {
-            max-width: 480px;
-            margin: 16px auto 0;
+            max-width: 500px;
+
+            margin:
+                18px auto 0;
+
             color: var(--text-secondary);
+
             font-size: 14px;
-            line-height: 1.65;
+            line-height: 1.7;
         }
 
-        /* ===== FEATURE GRID ===== */
-        .features-section {
-            margin: 0 auto 48px;
-        }
-        .features-heading {
-            text-align: center;
-            font-size: 1.35rem;
-            font-weight: 650;
-            letter-spacing: -0.03em;
-            margin-bottom: 28px;
-            color: var(--text);
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
-        }
-        .feature-card {
-            background: var(--surface-solid);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 24px 22px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: var(--shadow-card);
-        }
-        .feature-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.07);
-        }
-        .icon-container {
-            width: 38px;
-            height: 38px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .icon-container svg {
+
+        /* =========================================================
+           SUPPORT CARD
+        ========================================================= */
+
+        .support-section {
             width: 100%;
-            height: 100%;
-            stroke: var(--icon-color);
-            stroke-width: 1.5;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .icon-container svg.fill-icon {
-            fill: var(--icon-color);
-            stroke: none;
-        }
-        .feature-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: -0.02em;
-        }
-        .feature-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            line-height: 1.45;
         }
 
-        /* Card (Ticket) */
         .card {
             position: relative;
+
             width: 100%;
-            min-width: 0;
-            padding: clamp(20px, 4.5vw, 38px);
-            border: 1px solid rgba(205, 210, 218, .9);
+            max-width: var(--form-max);
+
+            margin: 0 auto;
+
+            padding: clamp(24px, 5vw, 44px);
+
+            border: 1px solid rgba(205, 210, 218, .78);
             border-radius: var(--radius-xl);
+
             background: var(--surface);
+
             box-shadow: var(--shadow);
+
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            animation: card-in .55s cubic-bezier(.22,.61,.36,1) both;
+
+            animation:
+                card-in .55s cubic-bezier(.22,.61,.36,1) both;
         }
+
         .card::before {
             content: "";
+
             position: absolute;
+
             top: 0;
-            left: 32px;
-            right: 32px;
+            left: 38px;
+            right: 38px;
+
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(233,223,141,.9), transparent);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(233, 223, 141, .95),
+                    transparent
+                );
         }
+
         .card-header {
             display: flex;
             align-items: flex-start;
-            gap: 14px;
-            padding-bottom: 24px;
-            margin-bottom: 26px;
+            gap: 15px;
+
+            padding-bottom: 26px;
+            margin-bottom: 28px;
+
             border-bottom: 1px solid var(--border);
         }
+
         .card-icon {
-            width: 44px;
-            height: 44px;
-            flex: 0 0 44px;
+            width: 46px;
+            height: 46px;
+            flex: 0 0 46px;
+
             display: grid;
             place-items: center;
-            border-radius: 13px;
+
+            border-radius: 14px;
+
             background: #111318;
             color: var(--accent);
-            box-shadow: 0 6px 16px rgba(17, 19, 24, .13);
-        }
-        .card-icon svg { width: 20px; height: 20px; }
-        .card-title h2 {
-            margin: 1px 0 4px;
-            font-size: 16px;
-            line-height: 1.25;
-            font-weight: 650;
-            letter-spacing: -.025em;
-        }
-        .card-title p {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 12px;
-            line-height: 1.5;
+
+            box-shadow:
+                0 7px 18px rgba(17, 19, 24, .14);
         }
 
-        /* Zammad Form */
+        .card-icon svg {
+            width: 21px;
+            height: 21px;
+        }
+
+        .card-title {
+            min-width: 0;
+        }
+
+        .card-title h2 {
+            margin: 2px 0 5px;
+
+            font-size: 17px;
+            line-height: 1.25;
+            font-weight: 650;
+            letter-spacing: -.03em;
+        }
+
+        .card-title p {
+            margin: 0;
+
+            color: var(--text-secondary);
+
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+
+        /* =========================================================
+           ZAMMAD FORM
+        ========================================================= */
+
         #zammad-feedback-form {
             width: 100%;
             min-width: 0;
+
             overflow-wrap: anywhere;
         }
+
         #zammad-feedback-form form,
         #zammad-feedback-form fieldset,
         #zammad-feedback-form table,
@@ -333,523 +478,1582 @@
             width: 100% !important;
             max-width: 100% !important;
         }
+
         #zammad-feedback-form fieldset {
             min-width: 0 !important;
+
             padding: 0 !important;
+
             border: 0 !important;
         }
+
         #zammad-feedback-form label {
             display: block !important;
+
             margin: 0 0 7px !important;
+
             color: #343b47 !important;
+
             font-family: inherit !important;
             font-size: 12px !important;
             font-weight: 600 !important;
-            line-height: 1.35 !important;
+            line-height: 1.4 !important;
         }
+
         #zammad-feedback-form input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
         #zammad-feedback-form textarea,
         #zammad-feedback-form select {
             display: block !important;
+
             width: 100% !important;
             max-width: 100% !important;
             min-width: 0 !important;
-            min-height: 48px !important;
-            padding: 12px 13px !important;
+
+            min-height: 50px !important;
+
+            padding: 13px 14px !important;
+
             border: 1px solid var(--border) !important;
             border-radius: var(--radius-md) !important;
-            background: #fff !important;
+
+            background: #ffffff !important;
             color: var(--text) !important;
+
             font-family: inherit !important;
             font-size: 16px !important;
             line-height: 1.4 !important;
+
             outline: none !important;
-            box-shadow: 0 1px 2px rgba(16,24,40,.025) !important;
-            transition: border-color var(--transition), box-shadow var(--transition), background var(--transition) !important;
+
+            box-shadow:
+                0 1px 2px rgba(16, 24, 40, .025) !important;
+
+            transition:
+                border-color var(--transition),
+                box-shadow var(--transition),
+                background var(--transition) !important;
         }
+
         #zammad-feedback-form input:hover,
         #zammad-feedback-form textarea:hover,
         #zammad-feedback-form select:hover {
             border-color: var(--border-strong) !important;
         }
+
         #zammad-feedback-form input:focus,
         #zammad-feedback-form textarea:focus,
         #zammad-feedback-form select:focus {
             border-color: var(--focus) !important;
-            box-shadow: 0 0 0 3px rgba(21,94,239,.15), 0 2px 4px rgba(16,24,40,.03) !important;
+
+            box-shadow:
+                0 0 0 3px rgba(21, 94, 239, .13),
+                0 3px 7px rgba(16, 24, 40, .035) !important;
         }
+
         #zammad-feedback-form input::placeholder,
         #zammad-feedback-form textarea::placeholder {
             color: #747d89 !important;
             opacity: 1;
         }
+
         #zammad-feedback-form textarea {
-            min-height: 155px !important;
+            min-height: 165px !important;
+
             resize: vertical !important;
-            line-height: 1.55 !important;
+
+            line-height: 1.6 !important;
         }
+
         #zammad-feedback-form input[type="file"] {
             display: block !important;
+
             width: 100% !important;
-            min-height: 48px !important;
-            padding: 10px !important;
+            min-height: 50px !important;
+
+            padding: 11px !important;
+
             border: 1px dashed var(--border-strong) !important;
             border-radius: var(--radius-md) !important;
+
             background: #fafbfc !important;
             color: var(--text-secondary) !important;
+
             font-size: 13px !important;
         }
+
         #zammad-feedback-form input[type="checkbox"],
         #zammad-feedback-form input[type="radio"] {
             width: 18px !important;
             height: 18px !important;
+
             min-height: 18px !important;
+
             accent-color: #111318;
         }
+
         #zammad-feedback-form button,
         #zammad-feedback-form input[type="submit"],
         #zammad-feedback-form input[type="button"] {
             display: block !important;
+
             width: 100% !important;
-            min-height: 50px !important;
-            margin-top: 10px !important;
-            padding: 14px 18px !important;
+            min-height: 54px !important;
+
+            margin-top: 12px !important;
+
+            padding: 15px 18px !important;
+
             border: 0 !important;
-            border-radius: 12px !important;
+            border-radius: 14px !important;
+
             background: #111318 !important;
-            color: #fff !important;
+            color: #ffffff !important;
+
             font-family: inherit !important;
             font-size: 14px !important;
             font-weight: 650 !important;
+
+            letter-spacing: -.01em;
+
             cursor: pointer !important;
             touch-action: manipulation;
-            box-shadow: 0 5px 14px rgba(17,19,24,.11) !important;
-            transition: transform var(--transition), background var(--transition), box-shadow var(--transition) !important;
+
+            box-shadow:
+                0 8px 18px rgba(17, 19, 24, .12) !important;
+
+            transition:
+                transform var(--transition),
+                background var(--transition),
+                box-shadow var(--transition) !important;
         }
+
         #zammad-feedback-form button:hover,
         #zammad-feedback-form input[type="submit"]:hover,
         #zammad-feedback-form input[type="button"]:hover {
             background: #292d35 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 9px 20px rgba(17,19,24,.15) !important;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 28px rgba(17, 19, 24, .16) !important;
         }
+
         #zammad-feedback-form button:active,
         #zammad-feedback-form input[type="submit"]:active,
         #zammad-feedback-form input[type="button"]:active {
             transform: translateY(0);
         }
+
         #zammad-feedback-form a {
             color: #155eef;
             overflow-wrap: anywhere;
         }
 
-        /* Trust row */
+
+        /* =========================================================
+           TRUST / REASSURANCE
+        ========================================================= */
+
         .reassurance {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+
             gap: 18px;
-            margin-top: 22px;
+
+            max-width: 820px;
+
+            margin:
+                24px auto 0;
+
             color: var(--text-secondary);
+
             font-size: 11px;
             text-align: center;
         }
+
         .reassurance-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
         }
-        .reassurance-item svg { width: 13px; height: 13px; }
+
+        .reassurance-item svg {
+            width: 14px;
+            height: 14px;
+        }
+
         .separator {
             width: 3px;
             height: 3px;
+
             border-radius: 50%;
+
             background: #9aa1ac;
         }
 
-        /* Footer */
+
+        /* =========================================================
+           FEATURES
+        ========================================================= */
+
+        .features-section {
+            max-width: 920px;
+
+            margin:
+                clamp(70px, 9vw, 100px) auto 0;
+        }
+
+        .features-heading {
+            margin: 0 0 28px;
+
+            text-align: center;
+
+            font-size: 20px;
+            line-height: 1.25;
+            font-weight: 650;
+
+            letter-spacing: -.035em;
+        }
+
+        .features-heading::after {
+            content: "";
+
+            display: block;
+
+            width: 28px;
+            height: 2px;
+
+            margin: 12px auto 0;
+
+            border-radius: 999px;
+
+            background: var(--accent);
+        }
+
+        .features-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .feature-card {
+            position: relative;
+
+            min-height: 175px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            padding: 23px 21px;
+
+            border: 1px solid rgba(223, 227, 232, .95);
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, .72);
+
+            box-shadow: var(--shadow-card);
+
+            transition:
+                transform var(--transition),
+                box-shadow var(--transition),
+                border-color var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+
+            border-color: #d7dce3;
+
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 17px;
+
+            border-radius: 11px;
+
+            background: var(--accent-soft);
+        }
+
+        .icon-container svg {
+            width: 22px;
+            height: 22px;
+
+            stroke: var(--icon-color);
+            stroke-width: 1.5;
+
+            fill: none;
+
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-container svg.fill-icon {
+            fill: var(--icon-color);
+            stroke: none;
+        }
+
+        .feature-title {
+            margin: 0 0 7px;
+
+            font-size: 14px;
+            line-height: 1.35;
+            font-weight: 600;
+
+            letter-spacing: -.02em;
+        }
+
+        .feature-description {
+            margin: 0;
+
+            color: var(--text-secondary);
+
+            font-size: 12px;
+            line-height: 1.55;
+            font-weight: 400;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
         .footer {
-            margin-top: 28px;
+            max-width: 920px;
+
+            margin:
+                52px auto 0;
+
+            padding:
+                24px 0 0;
+
+            border-top: 1px solid var(--border);
+
             color: #737b87;
+
             font-size: 10px;
-            line-height: 1.5;
+            line-height: 1.6;
+
             text-align: center;
         }
+
         .footer strong {
             color: #505864;
-            font-weight: 600;
+            font-weight: 650;
         }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 8px;
+        }
+
+        .footer a {
+            color: inherit;
+
+            text-decoration: none;
+
+            transition:
+                color var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--text);
+        }
+
+
+        /* =========================================================
+           ANIMATION
+        ========================================================= */
 
         @keyframes card-in {
-            from { opacity: 0; transform: translateY(14px) scale(.985); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform:
+                    translateY(14px)
+                    scale(.985);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
         }
 
-        /* Tablet */
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
         @media (min-width: 768px) {
             .page {
-                padding-top: clamp(40px, 7vh, 72px);
-                padding-bottom: clamp(40px, 7vh, 72px);
-            }
-            .card {
-                padding-left: 40px;
-                padding-right: 40px;
+                padding-top: clamp(42px, 7vh, 72px);
+                padding-bottom: clamp(48px, 7vh, 72px);
             }
         }
 
-        /* Mobile */
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-card {
+                min-height: 165px;
+            }
+        }
+
+
         @media (max-width: 600px) {
-            .availability { display: none; }
-            .hero h1 { font-size: clamp(32px, 10vw, 44px); }
-            .hero p { max-width: 360px; font-size: 13px; }
-            .features-heading { font-size: 1.2rem; margin-bottom: 20px; }
-            .feature-card { padding: 20px 18px; }
-            .reassurance { flex-direction: column; gap: 8px; }
-            .separator { display: none; }
+
+            .availability {
+                display: none;
+            }
+
+            .topbar {
+                margin-bottom: 46px;
+            }
+
+            .hero {
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size:
+                    clamp(34px, 10vw, 46px);
+
+                letter-spacing: -.06em;
+            }
+
+            .hero p {
+                max-width: 370px;
+
+                margin-top: 15px;
+
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+            .features-section {
+                margin-top: 64px;
+            }
+
+            .features-heading {
+                font-size: 18px;
+            }
+
+            .reassurance {
+                flex-direction: column;
+                gap: 9px;
+            }
+
+            .separator {
+                display: none;
+            }
         }
 
-        @media (max-width: 420px) {
-            .page { padding-top: max(22px, env(safe-area-inset-top)); }
-            .topbar { margin-bottom: 32px; }
-            .brand-name { font-size: 13px; }
-            .hero { margin-bottom: 22px; }
-            .hero h1 { font-size: clamp(30px, 10vw, 38px); }
-            .card { padding: 18px 15px; border-radius: 20px; }
-            .card::before { left: 18px; right: 18px; }
-            .card-header { gap: 10px; padding-bottom: 18px; margin-bottom: 18px; }
-            .card-icon { width: 38px; height: 38px; flex-basis: 38px; border-radius: 11px; }
-            .card-icon svg { width: 18px; height: 18px; }
-            .card-title h2 { font-size: 14px; }
-            .card-title p { font-size: 11px; }
-            #zammad-feedback-form label { margin-bottom: 6px !important; font-size: 11px !important; }
+
+        @media (max-width: 480px) {
+
+            .page {
+                padding-top:
+                    max(22px, env(safe-area-inset-top));
+
+                padding-bottom:
+                    max(38px, env(safe-area-inset-bottom));
+            }
+
+            .topbar {
+                margin-bottom: 38px;
+            }
+
+            .brand-mark {
+                width: 36px;
+                height: 36px;
+                flex-basis: 36px;
+            }
+
+            .brand-name {
+                font-size: 13px;
+            }
+
+            .hero {
+                margin-bottom: 26px;
+            }
+
+            .hero h1 {
+                font-size:
+                    clamp(31px, 10.5vw, 40px);
+            }
+
+            .eyebrow {
+                margin-bottom: 16px;
+            }
+
+            .card {
+                padding: 20px 16px;
+
+                border-radius: 21px;
+            }
+
+            .card::before {
+                left: 20px;
+                right: 20px;
+            }
+
+            .card-header {
+                gap: 11px;
+
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                flex-basis: 40px;
+
+                border-radius: 12px;
+            }
+
+            .card-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .card-title h2 {
+                margin-top: 1px;
+
+                font-size: 14px;
+            }
+
+            .card-title p {
+                font-size: 11px;
+            }
+
+            #zammad-feedback-form label {
+                margin-bottom: 6px !important;
+
+                font-size: 11px !important;
+            }
+
             #zammad-feedback-form input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
             #zammad-feedback-form textarea,
             #zammad-feedback-form select {
-                min-height: 45px !important;
+                min-height: 47px !important;
+
                 padding: 11px 12px !important;
+
                 font-size: 16px !important;
-                border-radius: 10px !important;
+
+                border-radius: 11px !important;
             }
-            #zammad-feedback-form textarea { min-height: 135px !important; }
+
+            #zammad-feedback-form textarea {
+                min-height: 140px !important;
+            }
+
             #zammad-feedback-form button,
             #zammad-feedback-form input[type="submit"],
             #zammad-feedback-form input[type="button"] {
-                min-height: 48px !important;
+                min-height: 50px !important;
+
                 padding: 13px 15px !important;
+
+                border-radius: 12px !important;
             }
-            .footer { margin-top: 24px; }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 11px;
+            }
+
+            .feature-card {
+                min-height: auto;
+
+                padding: 19px 18px;
+            }
+
+            .icon-container {
+                width: 37px;
+                height: 37px;
+
+                margin-bottom: 14px;
+            }
+
+            .icon-container svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .feature-title {
+                font-size: 13px;
+            }
+
+            .feature-description {
+                font-size: 11px;
+            }
+
+            .footer {
+                margin-top: 40px;
+            }
         }
 
+
+        /* =========================================================
+           TOUCH DEVICES
+        ========================================================= */
+
         @media (hover: none) {
+
+            .feature-card:hover {
+                transform: none;
+
+                box-shadow: var(--shadow-card);
+            }
+
             #zammad-feedback-form button:hover,
             #zammad-feedback-form input[type="submit"]:hover,
             #zammad-feedback-form input[type="button"]:hover {
                 transform: none;
-                box-shadow: 0 5px 14px rgba(17,19,24,.11) !important;
+
+                box-shadow:
+                    0 8px 18px rgba(17,19,24,.12) !important;
             }
         }
 
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: .01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: .01ms !important;
             }
         }
 
-        /* Dark mode */
+
+        /* =========================================================
+           DARK MODE
+        ========================================================= */
+
         @media (prefers-color-scheme: dark) {
+
             :root {
                 --bg: #0d0f12;
-                --surface: rgba(24, 27, 32, .94);
-                --surface-solid: #181b20;
-                --text: #f4f5f7;
-                --text-secondary: #a9b0ba;
-                --text-tertiary: #858d99;
-                --border: #30353d;
-                --border-strong: #414750;
-                --accent-soft: #373522;
-                --icon-color: #d4b86a;
+
+                --surface:
+                    rgba(24, 27, 32, .94);
+
+                --surface-solid:
+                    #181b20;
+
+                --text:
+                    #f4f5f7;
+
+                --text-secondary:
+                    #a9b0ba;
+
+                --text-tertiary:
+                    #858d99;
+
+                --border:
+                    #30353d;
+
+                --border-strong:
+                    #414750;
+
+                --accent-soft:
+                    #373522;
+
+                --accent-dark:
+                    #eee6a5;
+
+                --icon-color:
+                    #d4b86a;
             }
+
             body {
                 background:
-                    radial-gradient(700px 380px at 50% -100px, rgba(233,223,141,.08), transparent 70%),
-                    linear-gradient(180deg, #111318 0%, #0d0f12 70%);
+                    radial-gradient(
+                        700px 360px at 50% -130px,
+                        rgba(233,223,141,.08),
+                        transparent 70%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        #111318 0%,
+                        #0d0f12 68%
+                    );
             }
-            .brand-mark, .card-icon {
+
+            .brand-mark,
+            .card-icon {
                 background: #f1f2f4;
                 color: #514d1e;
             }
+
             .eyebrow {
-                background: rgba(30,33,38,.85);
-                border-color: var(--border);
+                background:
+                    rgba(30,33,38,.85);
+
+                border-color:
+                    var(--border);
             }
-            .hero h1 span { color: #9da5b1; }
-            .card { border-color: rgba(65,71,80,.9); }
+
+            .hero h1 span {
+                color: #9da5b1;
+            }
+
+            .card {
+                border-color:
+                    rgba(65,71,80,.9);
+            }
+
             .feature-card {
-                background: var(--surface-solid);
-                border-color: var(--border);
+                background:
+                    rgba(24,27,32,.78);
+
+                border-color:
+                    var(--border);
             }
+
+            .feature-card:hover {
+                border-color:
+                    var(--border-strong);
+            }
+
             #zammad-feedback-form input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
             #zammad-feedback-form textarea,
             #zammad-feedback-form select {
-                background: #111419 !important;
-                color: #f4f5f7 !important;
-                border-color: var(--border) !important;
+                background:
+                    #111419 !important;
+
+                color:
+                    #f4f5f7 !important;
+
+                border-color:
+                    var(--border) !important;
             }
+
             #zammad-feedback-form input[type="file"] {
-                background: #111419 !important;
-                color: var(--text-secondary) !important;
+                background:
+                    #111419 !important;
+
+                color:
+                    var(--text-secondary) !important;
             }
-            #zammad-feedback-form label { color: #d9dde3 !important; }
+
+            #zammad-feedback-form label {
+                color:
+                    #d9dde3 !important;
+            }
+
             #zammad-feedback-form input::placeholder,
-            #zammad-feedback-form textarea::placeholder { color: #858d99 !important; }
+            #zammad-feedback-form textarea::placeholder {
+                color:
+                    #858d99 !important;
+            }
+
             #zammad-feedback-form button,
             #zammad-feedback-form input[type="submit"],
             #zammad-feedback-form input[type="button"] {
-                background: #f1f2f4 !important;
-                color: #111318 !important;
+                background:
+                    #f1f2f4 !important;
+
+                color:
+                    #111318 !important;
             }
+
             #zammad-feedback-form button:hover,
             #zammad-feedback-form input[type="submit"]:hover,
             #zammad-feedback-form input[type="button"]:hover {
-                background: #ffffff !important;
+                background:
+                    #ffffff !important;
+            }
+
+            .footer strong {
+                color:
+                    #c8cdd4;
             }
         }
     </style>
 </head>
+
+
 <body>
-<a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
-<main id="main-content" class="page">
-
-    <!-- Header -->
-    <header class="topbar" aria-label="Kopfbereich">
-        <div class="brand" aria-label="MKM SevenPro">
-            <div class="brand-mark" aria-hidden="true">IT</div>
-            <div class="brand-name">MKM SevenPro</div>
-        </div>
-        <div class="availability" aria-label="Support verfügbar">
-            <span class="availability-dot" aria-hidden="true"></span>
-            Support erreichbar
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero" aria-labelledby="page-title">
-        <div class="eyebrow">
-            <span class="eyebrow-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3v18"/><path d="M3 12h18"/>
-                </svg>
-            </span>
-            <span>IT-HELPDESK</span>
-        </div>
-        <h1 id="page-title">Wie können wir <span>helfen?</span></h1>
-        <p>Erstellen Sie eine Support-Anfrage und beschreiben Sie kurz, wobei Sie Unterstützung benötigen.</p>
-    </section>
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Zum Hauptinhalt springen
+    </a>
 
 
-    <!-- Ticket Card -->
-    <section class="card" aria-labelledby="ticket-title">
-        <div class="card-header">
-            <div class="card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9 L3 21l1.9-5.7 A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 8.7 3.9 8.38 8.38 0 0 1 12.5 3 h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                    <path d="M8 10h8"/><path d="M8 14h5"/>
-                </svg>
+    <main
+        id="main-content"
+        class="page"
+    >
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header
+            class="topbar"
+            aria-label="Kopfbereich"
+        >
+
+            <div
+                class="brand"
+                aria-label="MKM SevenPro"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+                    IT
+                </div>
+
+                <div class="brand-name">
+                    MKM SevenPro
+                </div>
+
             </div>
-            <div class="card-title">
-                <h2 id="ticket-title">Neues Support-Ticket</h2>
-                <p>Je genauer die Beschreibung (Screenshot), desto schneller können wir helfen.</p>
+
+
+            <div
+                class="availability"
+                aria-label="Support erreichbar"
+            >
+
+                <span
+                    class="availability-dot"
+                    aria-hidden="true"
+                ></span>
+
+                Support erreichbar
+
             </div>
-        </div>
-        <div id="zammad-feedback-form" role="region" aria-label="Formular für ein neues Support-Ticket" aria-live="polite">
-            <p style="margin:0; color:#69727e; font-size:13px; text-align:center; padding:20px 0;">
-                Formular wird geladen …
+
+        </header>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section
+            class="hero"
+            aria-labelledby="page-title"
+        >
+
+            <div class="eyebrow">
+
+                <span
+                    class="eyebrow-icon"
+                    aria-hidden="true"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 3v18"/>
+                        <path d="M3 12h18"/>
+                    </svg>
+
+                </span>
+
+                <span>
+                    IT-HELPDESK
+                </span>
+
+            </div>
+
+
+            <h1 id="page-title">
+                Wie können wir
+                <span>helfen?</span>
+            </h1>
+
+
+            <p>
+                Erstellen Sie eine Support-Anfrage und beschreiben Sie kurz, wobei Sie Unterstützung benötigen.
             </p>
-        </div>
-    </section>
 
-    <!-- Reassurance -->
-    <div class="reassurance" aria-label="Support-Hinweise">
-        <div class="reassurance-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="m9 12 2 2 4-4"/>
-            </svg>
-            Sichere Übermittlung
-        </div>
-        <span class="separator" aria-hidden="true"></span>
-        <div class="reassurance-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M12 7v5l3 2"/>
-            </svg>
-            Persönliche Bearbeitung
-        </div>
-    </div>
+        </section>
 
-    
 
-</main>
+        <!-- =====================================================
+             SUPPORT TICKET
+        ====================================================== -->
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script id="zammad_form_script" src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js"></script>
-<script>
-(function () {
-    function initZammad() {
-        if (typeof window.jQuery === "undefined" || typeof jQuery.fn.ZammadForm !== "function") {
-            return false;
-        }
-        const container = document.getElementById("zammad-feedback-form");
-        if (!container) return false;
+        <section
+            class="support-section"
+            aria-labelledby="ticket-title"
+        >
 
-        jQuery(container).ZammadForm({
-            messageTitle: "Kontaktformular",
-            messageSubmit: "Ticket übermitteln",
-            messageThankYou: "Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.",
-            showTitle: false,
-            attachmentSupport: true
-        });
-        enhanceForm();
-        const observer = new MutationObserver(enhanceForm);
-        observer.observe(container, { childList: true, subtree: true });
-        return true;
-    }
+            <div class="card">
 
-    function enhanceForm() {
-        const container = document.getElementById("zammad-feedback-form");
-        if (!container) return;
-        const form = container.querySelector("form");
-        if (form) {
-            form.setAttribute("aria-label", "Formular für ein neues Support-Ticket");
-        }
-        const fields = container.querySelectorAll("input, textarea, select");
-        fields.forEach(function (field, index) {
-            if (field.type === "submit" || field.type === "button" || field.type === "hidden") return;
-            if (!field.id) field.id = "zammad-field-" + (index + 1);
-            if (field.required || field.getAttribute("aria-required") === "true") {
-                field.setAttribute("aria-required", "true");
+                <div class="card-header">
+
+                    <div
+                        class="card-icon"
+                        aria-hidden="true"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 8.7 3.9 8.38 8.38 0 0 1 12.5 3h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            <path d="M8 10h8"/>
+                            <path d="M8 14h5"/>
+                        </svg>
+
+                    </div>
+
+
+                    <div class="card-title">
+
+                        <h2 id="ticket-title">
+                            Neues Support-Ticket
+                        </h2>
+
+                        <p>
+    Je genauer die Beschreibung (Screenshot), desto schneller können wir helfen.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Zammad -->
+                <div
+                    id="zammad-feedback-form"
+                    role="region"
+                    aria-label="Formular für ein neues Support-Ticket"
+                    aria-live="polite"
+                >
+
+                    <p
+                        style="
+                            margin:0;
+                            color:#69727e;
+                            font-size:13px;
+                            text-align:center;
+                            padding:20px 0;
+                        "
+                    >
+                        Formular wird geladen …
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Trust -->
+            <div
+                class="reassurance"
+                aria-label="Support-Hinweise"
+            >
+
+                <div class="reassurance-item">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+
+                    Sichere Übermittlung
+
+                </div>
+
+
+                <span
+                    class="separator"
+                    aria-hidden="true"
+                ></span>
+
+
+                <div class="reassurance-item">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="9"
+                        />
+                        <path d="M12 7v5l3 2"/>
+                    </svg>
+
+                    Persönliche Bearbeitung
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section
+            class="features-section"
+            aria-labelledby="features-heading"
+        >
+
+            <h2
+                id="features-heading"
+                class="features-heading"
+            >
+                Unsere IT-Leistungen
+            </h2>
+
+
+            <div class="features-grid">
+
+                <!-- Cloud -->
+                <article class="feature-card">
+
+                    <div
+                        class="icon-container"
+                        aria-hidden="true"
+                    >
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                            <polyline points="12 10 12 16"/>
+                            <polyline points="9 13 12 16 15 13"/>
+                        </svg>
+
+                    </div>
+
+                    <h3 class="feature-title">
+                        Cloud- & Hybrid-Infrastruktur
+                    </h3>
+
+                    <p class="feature-description">
+                        Proaktive Wartung und Optimierung
+                        Ihrer Cloud- und Vor-Ort-Systeme.
+                    </p>
+
+                </article>
+
+
+                <!-- Cybersecurity -->
+                <article class="feature-card">
+
+                    <div
+                        class="icon-container"
+                        aria-hidden="true"
+                    >
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <rect
+                                x="9"
+                                y="10"
+                                width="6"
+                                height="5"
+                                rx="1"
+                            />
+                            <path d="M10 10V9a2 2 0 0 1 4 0v1"/>
+                        </svg>
+
+                    </div>
+
+                    <h3 class="feature-title">
+                        Erweiterte Cybersecurity
+                    </h3>
+
+                    <p class="feature-description">
+                        Schutz vor Bedrohungen,
+                        Angriffen und Datenverlust.
+                    </p>
+
+                </article>
+
+
+                <!-- Desktop -->
+                <article class="feature-card">
+
+                    <div
+                        class="icon-container"
+                        aria-hidden="true"
+                    >
+
+                        <svg viewBox="0 0 24 24">
+                            <rect
+                                x="2"
+                                y="3"
+                                width="20"
+                                height="14"
+                                rx="2"
+                            />
+                            <line
+                                x1="8"
+                                y1="21"
+                                x2="16"
+                                y2="21"
+                            />
+                            <line
+                                x1="12"
+                                y1="17"
+                                x2="12"
+                                y2="21"
+                            />
+                            <path d="M15 10l-3 3-1.5-1.5"/>
+                        </svg>
+
+                    </div>
+
+                    <h3 class="feature-title">
+                        Desktop- & Applikations-Support
+                    </h3>
+
+                    <p class="feature-description">
+                        Hilfe für Ihre Anwendungen
+                        und Endgeräte.
+                    </p>
+
+                </article>
+
+
+                <!-- Ansprechpartner -->
+                <article class="feature-card">
+
+                    <div
+                        class="icon-container"
+                        aria-hidden="true"
+                    >
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/>
+                            <path d="M21 14a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2"/>
+                            <path d="M3 14a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2"/>
+                            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                            <path d="M12 12c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+
+                    </div>
+
+                    <h3 class="feature-title">
+                        Persönlicher IT-Ansprechpartner
+                    </h3>
+
+                    <p class="feature-description">
+                        Ein fester Experte für
+                        Ihr Unternehmen.
+                    </p>
+
+                </article>
+
+
+                <!-- Server -->
+                <article class="feature-card">
+
+                    <div
+                        class="icon-container"
+                        aria-hidden="true"
+                    >
+
+                        <svg viewBox="0 0 24 24">
+                            <rect
+                                x="2"
+                                y="2"
+                                width="20"
+                                height="8"
+                                rx="2"
+                            />
+                            <rect
+                                x="2"
+                                y="14"
+                                width="20"
+                                height="8"
+                                rx="2"
+                            />
+                            <line
+                                x1="6"
+                                y1="6"
+                                x2="6"
+                                y2="6"
+                            />
+                            <line
+                                x1="6"
+                                y1="18"
+                                x2="6"
+                                y2="18"
+                            />
+                        </svg>
+
+                    </div>
+
+                    <h3 class="feature-title">
+                        Server- & Netzwerk-Management
+                    </h3>
+
+                    <p class="feature-description">
+                        Wartung und proaktive Überwachung
+                        Ihrer Kernsysteme.
+                    </p>
+
+                </article>
+
+
+                <!-- Backup -->
+                <article class="feature-card">
+
+                    <div
+                        class="icon-container"
+                        aria-hidden="true"
+                    >
+
+                        <svg
+                            class="fill-icon"
+                            viewBox="0 0 24 24"
+                        >
+                            <path d="M12 2C6.48 2 2 4.02 2 6.5s4.48 4.5 10 4.5 10-2.02 10-4.5S17.52 2 12 2zm0 13c-5.52 0-10 2.02-10 4.5S6.48 24 12 24s10-2.02 10-4.5S17.52 15 12 15zM2 9.5c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v3c0 2.48-4.48 4.5-10 4.5S2 14.98 2 12.5v-3z"/>
+                        </svg>
+
+                    </div>
+
+                    <h3 class="feature-title">
+                        Daten-Backup & Recovery
+                    </h3>
+
+                    <p class="feature-description">
+                        Sichere Datensicherung und
+                        schnelle Wiederherstellung.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="footer">
+
+            <div>
+                <strong>MKM SevenPro</strong>
+                <span aria-hidden="true"> · </span>
+                Professioneller IT-Support
+            </div>
+
+
+            <nav
+                class="footer-nav"
+                aria-label="Footer-Navigation"
+            >
+
+                <a
+                    href="https://mkmsevenpro.de/impressum/"
+                >
+                    Impressum
+                </a>
+
+                <span aria-hidden="true">
+                    ·
+                </span>
+
+                <a
+                    href="https://mkmsevenpro.de/datenschutzerklaerung/"
+                >
+                    Datenschutz
+                </a>
+
+            </nav>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================================================
+         EXTERNAL DEPENDENCIES
+    ========================================================== -->
+
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+
+    <script
+        id="zammad_form_script"
+        src="https://mkm-sevenpro-service.zammad.com/assets/form/form.js"
+    ></script>
+
+
+    <!-- =========================================================
+         ZAMMAD INITIALIZATION
+    ========================================================== -->
+
+    <script>
+        (function () {
+
+            function initZammad() {
+
+                if (
+                    typeof window.jQuery === "undefined" ||
+                    typeof jQuery.fn.ZammadForm !== "function"
+                ) {
+                    return false;
+                }
+
+
+                const container =
+                    document.getElementById(
+                        "zammad-feedback-form"
+                    );
+
+
+                if (!container) {
+                    return false;
+                }
+
+
+                jQuery(container).ZammadForm({
+
+                    messageTitle:
+                        "Kontaktformular",
+
+                    messageSubmit:
+                        "Ticket übermitteln",
+
+                    messageThankYou:
+                        "Vielen Dank für Ihre Anfrage (#%s). Wir melden uns umgehend.",
+
+                    showTitle:
+                        false,
+
+                    attachmentSupport:
+                        true
+
+                });
+
+
+                enhanceForm();
+
+
+                const observer =
+                    new MutationObserver(
+                        enhanceForm
+                    );
+
+
+                observer.observe(
+                    container,
+                    {
+                        childList: true,
+                        subtree: true
+                    }
+                );
+
+
+                return true;
             }
-        });
-        const buttons = container.querySelectorAll("button, input[type='submit'], input[type='button']");
-        buttons.forEach(function (button) {
-            const text = (button.textContent || button.value || "").trim();
-            if (!text) {
-                button.setAttribute("aria-label", "Support-Ticket übermitteln");
+
+
+            function enhanceForm() {
+
+                const container =
+                    document.getElementById(
+                        "zammad-feedback-form"
+                    );
+
+
+                if (!container) {
+                    return;
+                }
+
+
+                const form =
+                    container.querySelector(
+                        "form"
+                    );
+
+
+                if (form) {
+
+                    form.setAttribute(
+                        "aria-label",
+                        "Formular für ein neues Support-Ticket"
+                    );
+                }
+
+
+                const fields =
+                    container.querySelectorAll(
+                        "input, textarea, select"
+                    );
+
+
+                fields.forEach(
+                    function (field, index) {
+
+                        if (
+                            field.type === "submit" ||
+                            field.type === "button" ||
+                            field.type === "hidden"
+                        ) {
+                            return;
+                        }
+
+
+                        if (!field.id) {
+
+                            field.id =
+                                "zammad-field-" +
+                                (index + 1);
+                        }
+
+
+                        if (
+                            field.required ||
+                            field.getAttribute(
+                                "aria-required"
+                            ) === "true"
+                        ) {
+
+                            field.setAttribute(
+                                "aria-required",
+                                "true"
+                            );
+                        }
+
+                    }
+                );
+
+
+                const buttons =
+                    container.querySelectorAll(
+                        "button, input[type='submit'], input[type='button']"
+                    );
+
+
+                buttons.forEach(
+                    function (button) {
+
+                        const text =
+                            (
+                                button.textContent ||
+                                button.value ||
+                                ""
+                            ).trim();
+
+
+                        if (!text) {
+
+                            button.setAttribute(
+                                "aria-label",
+                                "Support-Ticket übermitteln"
+                            );
+                        }
+
+                    }
+                );
+
             }
-        });
-    }
 
-    let attempts = 0;
-    const interval = setInterval(function () {
-        attempts++;
-        if (initZammad() || attempts > 30) clearInterval(interval);
-    }, 250);
-})();
-</script>
 
-    <!-- Feature Grid -->
-    <section class="features-section" aria-labelledby="features-heading">
-        <h2 id="features-heading" class="features-heading">Unsere IT-Leistungen</h2>
-        <div class="features-grid">
+            let attempts = 0;
 
-            <!-- Cloud -->
-            <div class="feature-card">
-                <div class="icon-container">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
-                        <polyline points="12 10 12 16"></polyline>
-                        <polyline points="9 13 12 16 15 13"></polyline>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Cloud- & Hybrid-Infrastruktur</h3>
-                <p class="feature-description">Proaktive Wartung und Optimierung Ihrer Cloud- & Vor-Ort-Systeme.</p>
-            </div>
 
-            <!-- Cybersecurity -->
-            <div class="feature-card">
-                <div class="icon-container">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        <rect x="9" y="10" width="6" height="5" rx="1"></rect>
-                        <path d="M10 10V9a2 2 0 0 1 4 0v1"></path>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Erweiterte Cybersecurity</h3>
-                <p class="feature-description">Schutz vor Bedrohungen & Datenverlust.</p>
-            </div>
+            const interval =
+                setInterval(
+                    function () {
 
-            <!-- Desktop Support -->
-            <div class="feature-card">
-                <div class="icon-container">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                        <path d="M15 10l-3 3-1.5-1.5"></path>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Desktop- & Applikations-Support</h3>
-                <p class="feature-description">Hilfe für Ihre Anwendungen & Endgeräte.</p>
-            </div>
+                        attempts++;
 
-            <!-- Persönliche Ansprechpartner -->
-            <div class="feature-card">
-                <div class="icon-container">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"></path>
-                        <path d="M21 14a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2"></path>
-                        <path d="M3 14a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2"></path>
-                        <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-                        <path d="M12 12c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Persönlicher IT-Ansprechpartner</h3>
-                <p class="feature-description">Fester Experte für Ihr Unternehmen.</p>
-            </div>
 
-            <!-- Server Management -->
-            <div class="feature-card">
-                <div class="icon-container">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                        <line x1="6" y1="6" x2="6" y2="6"></line>
-                        <line x1="6" y1="18" x2="6" y2="18"></line>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Server- & Netzwerk-Management</h3>
-                <p class="feature-description">Wartung & Proaktive Überwachung Ihrer Kernsysteme.</p>
-            </div>
+                        if (
+                            initZammad() ||
+                            attempts > 30
+                        ) {
 
-            <!-- Backup -->
-            <div class="feature-card">
-                <div class="icon-container">
-                    <svg class="fill-icon" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 4.02 2 6.5s4.48 4.5 10 4.5 10-2.02 10-4.5S17.52 2 12 2zm0 13c-5.52 0-10 2.02-10 4.5S6.48 24 12 24s10-2.02 10-4.5S17.52 15 12 15zM2 9.5c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v3c0 2.48-4.48 4.5-10 4.5S2 14.98 2 12.5v-3z"></path>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Daten-Backup & Recovery</h3>
-                <p class="feature-description">Sichere Datensicherung & Schnelle Wiederherstellung.</p>
-            </div>
+                            clearInterval(
+                                interval
+                            );
 
-        </div>
-    </section>
-	<!-- Footer -->
-<footer class="footer">
-    <strong>MKM SevenPro</strong>
-    <span aria-hidden="true"> · </span>
-    Professioneller IT-Support
-<br>
-<br>	
-    <a href="https://mkmsevenpro.de/impressum/">Impressum</a>
-	    <span aria-hidden="true"> · </span>
-    <a href="https://mkmsevenpro.de/datenschutzerklaerung/">Datenschutz</a>
-  <br>  <span aria-hidden="true"> · </span>
-</footer>
+                        }
+
+                    },
+                    250
+                );
+
+        })();
+    </script>
+
 </body>
 </html>
